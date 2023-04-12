@@ -1,10 +1,9 @@
 numpy
 scipy
 pandas>=1.0.0
-pandas_profiling
+sklearn
 
 matplotlib
-seaborn
 plotly
 
 black
@@ -18,3 +17,6 @@ ipywidgets
 ipython
 
 mlflow
+
+transformers[torch]
+sentence-transformers
