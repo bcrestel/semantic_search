@@ -1,7 +1,6 @@
-numpy
 scipy
 pandas>=1.0.0
-sklearn
+scikit-learn
 
 matplotlib
 plotly
@@ -10,7 +9,6 @@ black
 isort
 pytest
 pip-tools
-requests
 
 jupyterlab
 ipywidgets
