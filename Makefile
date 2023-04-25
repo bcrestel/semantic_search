@@ -4,7 +4,7 @@ IMAGE_NAME = semantic_search
 IMAGE_TAG = 1.0
 ###################
 # env variables to load at runtime
-LOAD_ENV = --env OPENAI_API_KEY=$(OPENAI_API_KEY)
+LOAD_ENV = --env OPENAI_API_KEY=$(OPENAI_API_KEY) --env ANTHROPIC_API_KEY=$(ANTHROPIC_API_KEY)
 ###################
 # FIXED PARAMETERS
 TEST_FOLDER = src/tests
@@ -12,7 +12,7 @@ FORMAT_FOLDER = src
 DOCKER_RUN = docker run -it --entrypoint=bash $(LOAD_ENV) -w /home -v $(PWD):/home/
 DOCKER_IMAGE = $(IMAGE_NAME):$(IMAGE_TAG)
 DOCKERFILE_PIPTOOLS = Dockerfile_piptools
-DOCKER_IMAGE_PIPTOOLS = piptools_torch:1.0
+DOCKER_IMAGE_PIPTOOLS = piptools:latest	# this should exist already
 ###################
 
 #
@@ -26,21 +26,10 @@ build: .build
 	docker build --rm -t $(DOCKER_IMAGE) .
 	@touch .build
 
-requirements.txt: .build_piptools requirements.in
+requirements.txt: requirements.in
 	$(info ***** Pinning requirements.txt *****)
 	#$(DOCKER_RUN) $(DOCKER_IMAGE_PIPTOOLS) -c "pip-compile --output-file requirements.txt requirements.in"
 	$(DOCKER_RUN) $(DOCKER_IMAGE_PIPTOOLS) -c "pip-compile --resolver=backtracking --output-file requirements.txt requirements.in" # adding this here just in case: resolver=backtracking was necessary to build another image once
-	@touch requirements.txt
-
-.build_piptools: Dockerfile_piptools
-	$(info ***** Building Image piptools:1.0 *****)
-	docker build --rm -f $(DOCKERFILE_PIPTOOLS) -t $(DOCKER_IMAGE_PIPTOOLS) .
-	@touch .build_piptools
-
-.PHONY : upgrade
-upgrade:
-	$(info ***** Upgrading dependencies *****)
-	$(DOCKER_RUN) $(DOCKER_IMAGE_PIPTOOLS) -c "pip-compile --upgrade --output-file requirements.txt requirements.in"
 	@touch requirements.txt
 
 #

@@ -1,4 +1,0 @@
-FROM pytorch/pytorch:latest
-
-RUN pip install pip-tools
-
