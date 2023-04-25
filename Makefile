@@ -3,10 +3,13 @@
 IMAGE_NAME = semantic_search
 IMAGE_TAG = 1.0
 ###################
+# env variables to load at runtime
+LOAD_ENV = --env OPENAI_API_KEY=$(OPENAI_API_KEY)
+###################
 # FIXED PARAMETERS
 TEST_FOLDER = src/tests
 FORMAT_FOLDER = src
-DOCKER_RUN = docker run -it --entrypoint=bash -w /home -v $(PWD):/home/
+DOCKER_RUN = docker run -it --entrypoint=bash $(LOAD_ENV) -w /home -v $(PWD):/home/
 DOCKER_IMAGE = $(IMAGE_NAME):$(IMAGE_TAG)
 DOCKERFILE_PIPTOOLS = Dockerfile_piptools
 DOCKER_IMAGE_PIPTOOLS = piptools_torch:1.0

@@ -16,5 +16,6 @@ ipython
 
 mlflow
 
-transformers[torch]
+transformers
 sentence-transformers
+langchain
