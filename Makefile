@@ -4,7 +4,7 @@ IMAGE_NAME = semantic_search
 IMAGE_TAG = 1.0
 ###################
 # env variables to load at runtime
-LOAD_ENV = --env OPENAI_API_KEY=$(OPENAI_API_KEY) --env ANTHROPIC_API_KEY=$(ANTHROPIC_API_KEY)
+LOAD_ENV = --env OPENAI_API_KEY=$(OPENAI_API_KEY) --env ANTHROPIC_API_KEY=$(ANTHROPIC_API_KEY) --env HUGGINGFACEHUB_API_TOKEN=$(HUGGINGFACEHUB_API_TOKEN)
 ###################
 # FIXED PARAMETERS
 TEST_FOLDER = src/tests
