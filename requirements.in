@@ -24,3 +24,6 @@ langchain
 openai
 anthropic
 huggingface_hub
+
+chromadb
+faiss-cpu
