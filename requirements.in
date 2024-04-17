@@ -21,6 +21,7 @@ ipython
 
 #langchain
 llama-index
+llama-index-embeddings-huggingface
 
 #openai
 #anthropic
