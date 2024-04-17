@@ -14,16 +14,17 @@ jupyterlab
 ipywidgets
 ipython
 
-mlflow
+#mlflow
 
-transformers[torch]
-sentence-transformers
+#transformers[torch]
+#sentence-transformers
 
-langchain
+#langchain
+llama-index
 
-openai
-anthropic
-huggingface_hub
+#openai
+#anthropic
+#huggingface_hub
 
-chromadb
-faiss-cpu
+#chromadb
+#faiss-cpu
