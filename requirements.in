@@ -19,13 +19,14 @@ ipython
 #transformers[torch]
 #sentence-transformers
 
-#langchain
-llama-index
-llama-index-embeddings-huggingface
+langchain
+langchain_community
+#llama-index
+#llama-index-embeddings-huggingface
 
 #openai
 #anthropic
 #huggingface_hub
 
 #chromadb
-#faiss-cpu
+faiss-cpu
