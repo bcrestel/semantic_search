@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List, Tuple, Callable, Any, Optional
 
 
 def find_overlap(text_0, text_1, max_overlap: int = 100) -> Tuple[int]:
@@ -22,18 +22,27 @@ def find_overlap(text_0, text_1, max_overlap: int = 100) -> Tuple[int]:
         return len(text_0) - idx_start_overlap, idx_start_overlap
 
 
-def find_overlap_chunks(_text_chunks: List[str]) -> List[Tuple[int]]:
+def find_overlap_chunks(_text_chunks: List[Any], convert_any_to_str: Optional[Callable[..., str]] = None) -> List[Tuple[int]]:
     """
     Find overlaps over consecutive texts
 
     Args:
         _text_chunks (List[str]): List of strings to be tested, already ordered.
+        convert_any_to_str (Optional[Callable[..., str]]): convert of an element of _text_chunks to str
 
     Returns:
         List[Tuple[int]]: List of output from find_overlap for each consecutive strings
     """
-    nb_chunks = len(_text_chunks)
+    # Convert the elements of _text_chunks to string if needed
+    if type(_text_chunks) != str:
+        if convert_any_to_str is None:
+            raise ValueError
+        _text_chunks_str = [convert_any_to_str(chunk) for chunk in _text_chunks]
+    else:
+        _text_chunks_str = _text_chunks
+    # Calculate the overlap between each consecutive chunks
+    nb_chunks = len(_text_chunks_str)
     return [
-        find_overlap(_text_chunks[ii], _text_chunks[ii + 1])
+        find_overlap(_text_chunks_str[ii], _text_chunks_str[ii + 1])
         for ii in range(nb_chunks - 1)
     ]
