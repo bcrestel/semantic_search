@@ -17,7 +17,7 @@ ipython
 #mlflow
 
 #transformers[torch]
-#sentence-transformers
+sentence-transformers
 
 langchain
 langchain_community
