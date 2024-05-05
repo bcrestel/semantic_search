@@ -34,7 +34,7 @@ def find_overlap_chunks(_text_chunks: List[Any], convert_any_to_str: Optional[Ca
         List[Tuple[int]]: List of output from find_overlap for each consecutive strings
     """
     # Convert the elements of _text_chunks to string if needed
-    if type(_text_chunks) != str:
+    if type(_text_chunks[0]) != str:
         if convert_any_to_str is None:
             raise ValueError
         _text_chunks_str = [convert_any_to_str(chunk) for chunk in _text_chunks]
