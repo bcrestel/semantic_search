@@ -2,3 +2,4 @@
 .build_piptools
 .idea
 *__pycache__*
+*.gguf
