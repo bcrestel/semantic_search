@@ -14,7 +14,7 @@ jupyterlab
 ipywidgets
 ipython
 
-#mlflow
+mlflow
 
 #transformers[torch]
 sentence-transformers
