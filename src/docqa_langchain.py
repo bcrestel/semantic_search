@@ -1,7 +1,9 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import Union, List, Optional
 from pathlib import Path
 import logging
+
+import mlflow
 
 from langchain_core.documents.base import Document
 from langchain_community.document_loaders import TextLoader
@@ -120,8 +122,19 @@ class DocQA:
 
 
 if __name__ == "__main__":
-    docqa = DocQA()
-    document_path = "experiments/docs/state_of_the_union.txt"
-    question="By how much will the deficit be down by the end of this year?"
-    retrieved_docs = docqa.query(question=question, document=document_path)
-    print(retrieved_docs[0])
+    mlflow.set_experiment("TEST/Doc Q&A -- Langchain")
+    with mlflow.start_run() as run:
+        logger.info(f"MLFlow run id: {run.info.run_id}")
+        docqa = DocQA()
+        mlflow.log_params(asdict(docqa.parameters))
+        document_path = "experiments/docs/state_of_the_union.txt"
+        question="By how much will the deficit be down by the end of this year?"
+        retrieved_docs = docqa.query(question=question, document=document_path)
+        mlflow.log_params(
+            {
+                "document_path": document_path,
+                "question": question,
+                "retrieved_docs": retrieved_docs
+            }
+        )
+        print(retrieved_docs[0])

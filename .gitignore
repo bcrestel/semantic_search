@@ -4,3 +4,4 @@
 *__pycache__*
 *.gguf
 experiments/model_cache
+mlruns/
